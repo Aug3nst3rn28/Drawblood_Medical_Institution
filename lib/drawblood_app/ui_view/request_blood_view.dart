@@ -268,7 +268,11 @@ class _RequestBloodViewState extends State<RequestBloodView> {
                                                     onPressed: () {},
                                                   ),
                                                   TextButton(
-                                                      style: ButtonStyle(),
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero),
                                                       onPressed: () async {
                                                         DateTime? Newdate =
                                                             await showDatePicker(
@@ -295,8 +299,31 @@ class _RequestBloodViewState extends State<RequestBloodView> {
                                                             color:
                                                                 Colors.black),
                                                       )),
+                                                  IconButton(
+                                                    padding: EdgeInsets.zero,
+                                                    constraints:
+                                                        BoxConstraints(),
+                                                    icon: Icon(
+                                                        Icons.arrow_drop_down),
+                                                    onPressed: () {},
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  IconButton(
+                                                    padding: EdgeInsets.zero,
+                                                    constraints:
+                                                        BoxConstraints(),
+                                                    icon:
+                                                        Icon(Icons.access_time),
+                                                    onPressed: () {},
+                                                  ),
                                                   TextButton(
-                                                      style: ButtonStyle(),
+                                                      style:
+                                                          TextButton.styleFrom(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero),
                                                       onPressed: () async {
                                                         TimeOfDay? Newtime =
                                                             await showTimePicker(
@@ -313,7 +340,15 @@ class _RequestBloodViewState extends State<RequestBloodView> {
                                                         style: TextStyle(
                                                             color:
                                                                 Colors.black),
-                                                      ))
+                                                      )),
+                                                  IconButton(
+                                                    padding: EdgeInsets.zero,
+                                                    constraints:
+                                                        BoxConstraints(),
+                                                    icon: Icon(
+                                                        Icons.arrow_drop_down),
+                                                    onPressed: () {},
+                                                  ),
                                                 ],
                                               )
                                             ],
