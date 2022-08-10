@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "582793055544",
+    "project_id": "draw-7ba7d",
+    "storage_bucket": "draw-7ba7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582793055544:android:fe02c375e0c074bccf05cd",
+        "android_client_info": {
+          "package_name": "com.example.best_flutter_ui_templates"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582793055544-o1400fs51n26octpgtgkajbddmb4iru4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBGw5hezLQOn83WFPDE_1qUkRPrLfp-20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582793055544-o1400fs51n26octpgtgkajbddmb4iru4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582793055544:android:e7ee1f32fe7090a9cf05cd",
+        "android_client_info": {
+          "package_name": "com.example.drawblood_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582793055544-o1400fs51n26octpgtgkajbddmb4iru4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBGw5hezLQOn83WFPDE_1qUkRPrLfp-20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582793055544-o1400fs51n26octpgtgkajbddmb4iru4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582793055544:android:d3554ad4ae5ff21fcf05cd",
+        "android_client_info": {
+          "package_name": "com.example.drawblood_medicalinstitution_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582793055544-o1400fs51n26octpgtgkajbddmb4iru4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBGw5hezLQOn83WFPDE_1qUkRPrLfp-20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582793055544-o1400fs51n26octpgtgkajbddmb4iru4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
