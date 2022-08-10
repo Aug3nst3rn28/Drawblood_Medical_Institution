@@ -3,7 +3,6 @@ import 'package:drawblood_medicalinstitution_app/drawblood_app/models/medical_da
 import 'package:drawblood_medicalinstitution_app/drawblood_app/models/request_appoinment_data.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/models/reward_list_data.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/models/user_data.dart';
-import 'package:drawblood_medicalinstitution_app/drawblood_app/models/user_reward_list_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 String? useruid() {
