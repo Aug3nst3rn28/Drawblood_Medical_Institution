@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class AppoinmentList {
   final String? user_id;
   final String? venue;
@@ -18,4 +20,15 @@ class AppoinmentList {
 
   Map<String, dynamic> toJson() =>
       {"vanue": venue, "status": status, "createdate": createdate};
+
+  factory AppoinmentList.fromSnapshot(DocumentSnapshot snap) {
+    var snapshot = snap.data() as Map<String, dynamic>;
+
+    return AppoinmentList(
+      user_id: snapshot['user_id'],
+      venue: snapshot['vanue'],
+      status: snapshot['status'],
+      date: snapshot['date'].toDate(),
+    );
+  }
 }
