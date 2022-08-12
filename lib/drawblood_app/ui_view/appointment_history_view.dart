@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/models/user_appointment_list_data.dart';
-import 'package:drawblood_medicalinstitution_app/drawblood_app/ui_view/appointment.dart';
+import 'package:drawblood_medicalinstitution_app/drawblood_app/models/user_data.dart';
 import 'package:drawblood_medicalinstitution_app/firebase_info.dart';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import '../drawbood_app_theme.dart';
 
 List<AppoinmentList> userAppointmentList = [];
 List<AppoinmentList> categoriesAppointmentList = [];
-List<AppoinmentList> categoriesUserAppointmentList = [];
+List<UserModel> userInformationList = [];
+String medicalInformation = '';
 
 class AppointmentView extends StatefulWidget {
   final AnimationController? animationController;
@@ -26,12 +26,16 @@ class _AppointmentViewState extends State<AppointmentView> {
   int _value = 1;
   var data = '';
   String? uid = '';
+  String venue = '';
 
   @override
   void initState() {
     uid = useruid();
-    getUserAppointmentList(uid);
+    getMedicalName(uid);
+    getUserAppointmentList(medicalInformation);
+
     _searchCategory(1);
+
     super.initState();
   }
 
@@ -62,6 +66,7 @@ class _AppointmentViewState extends State<AppointmentView> {
       } else {
         categoriesAppointmentList = userAppointmentList;
       }
+      getUserInformation(categoriesAppointmentList);
     });
   }
 
@@ -277,16 +282,17 @@ Widget _userAppointmentListWidget(AppoinmentList list) {
   ));
 }
 
-void getUserAppointmentList(uid) async {
+void getUserAppointmentList(medicalInformation) async {
   final db = FirebaseFirestore.instance;
   final docRef = db
       .collection("appoinment")
-      .where('user_id', isEqualTo: uid)
+      .where('vanue', isEqualTo: medicalInformation)
       .orderBy('date', descending: true);
   var snapshot = await docRef.get();
   if (userAppointmentList.isNotEmpty) {
     userAppointmentList.clear();
   }
+
   if (snapshot.docs.isNotEmpty) {
     for (DocumentSnapshot results in snapshot.docs) {
       Map<String, dynamic> data = results.data() as Map<String, dynamic>;
@@ -297,6 +303,58 @@ void getUserAppointmentList(uid) async {
           status: data['status'],
           date: (data['date'] as Timestamp).toDate(),
           createdate: data['createdate']));
+
+      print(userAppointmentList[0].user_id);
     }
   }
 }
+
+void getMedicalName(uid) async {
+  final db = FirebaseFirestore.instance;
+  final docRef = db.collection("user").doc(uid);
+
+  docRef.get().then(
+    (DocumentSnapshot doc) {
+      final data = doc.data() as Map<String, dynamic>;
+      medicalInformation = data['name'];
+    },
+    onError: (e) => print("Error getting document: $e"),
+  );
+}
+
+void getUserInformation(user_id) async {
+  print(user_id);
+  final db = FirebaseFirestore.instance;
+  final docRef = db.collection("user").doc(user_id);
+  if (userInformationList.isNotEmpty) {
+    userInformationList.clear();
+  }
+  docRef.get().then(
+    (DocumentSnapshot doc) {
+      final data = doc.data() as Map<String, dynamic>;
+
+      userInformationList.add(UserModel(
+          name: data['name'],
+          bloodtype: data['bloodtype'],
+          gender: data['gender'],
+          height: data['height'],
+          weight: data['weight']));
+    },
+    onError: (e) => print("Error getting document: $e"),
+  );
+}
+
+
+
+// Future<UserModel?> getUserInformation(user_id) async {
+//   print(user_id);
+//   final userInfoCollection =
+//       FirebaseFirestore.instance.collection("user").doc(user_id);
+//   final snapshot = await userInfoCollection.get();
+//   if (snapshot.exists) {
+//     userInformationList.add(UserModel.fromJson(snapshot.data()!));
+//   }
+
+//   print('userInformationList[0].name');
+//   print(userInformationList.length);
+// }

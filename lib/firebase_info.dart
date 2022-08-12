@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/models/medical_data.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/models/request_appoinment_data.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/models/reward_list_data.dart';
+import 'package:drawblood_medicalinstitution_app/drawblood_app/models/user_appointment_list_data.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/models/user_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -78,5 +79,15 @@ class FirestoreQuery {
     } catch (e) {
       print("Some error occured: $e");
     }
+  }
+
+  static Stream<List<AppoinmentList>> getUserAppointmentList(
+      medicalInformation) {
+    final appointmentCollection = FirebaseFirestore.instance
+        .collection("appoinment")
+        .where('vanue', isEqualTo: medicalInformation)
+        .orderBy('date', descending: true);
+    return appointmentCollection.snapshots().map((querySnapshot) =>
+        querySnapshot.docs.map((e) => AppoinmentList.fromSnapshot(e)).toList());
   }
 }
