@@ -33,7 +33,6 @@ class _AppointmentViewState extends State<AppointmentView> {
     uid = useruid();
     getMedicalName(uid);
     getUserAppointmentList(medicalInformation);
-
     _searchCategory(1);
 
     super.initState();
@@ -66,7 +65,6 @@ class _AppointmentViewState extends State<AppointmentView> {
       } else {
         categoriesAppointmentList = userAppointmentList;
       }
-      getUserInformation(categoriesAppointmentList);
     });
   }
 
@@ -228,53 +226,133 @@ Widget _userAppointmentListWidget(AppoinmentList list) {
           child: Column(
             children: [
               ListTile(
-                  leading: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: list.status == 'Ongoing'
-                                ? AssetImage(
-                                    "assets/drawblood_app/processing.png")
-                                : list.status == 'Complete'
+                  leading: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: list.status == 'Ongoing'
                                     ? AssetImage(
-                                        "assets/drawblood_app/done.png")
-                                    : AssetImage(
-                                        "assets/drawblood_app/cancelled.png"))),
+                                        "assets/drawblood_app/processing.png")
+                                    : list.status == 'Complete'
+                                        ? AssetImage(
+                                            "assets/drawblood_app/done.png")
+                                        : AssetImage(
+                                            "assets/drawblood_app/cancelled.png"))),
+                      ),
+                    ],
                   ),
-                  title: Text(
-                    '${list.date!.year}/${list.date!.month}/${list.date!.day}',
-                    style: TextStyle(
-                      fontFamily: drawbloodAppTheme.fontName,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      letterSpacing: 0.18,
-                      color: drawbloodAppTheme.darkerText,
+                  title: Padding(
+                    padding: const EdgeInsets.only(top: 6.0),
+                    child: Text(
+                      '${list.date!.year}/${list.date!.month}/${list.date!.day}',
+                      style: TextStyle(
+                        fontFamily: drawbloodAppTheme.fontName,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        letterSpacing: 0.18,
+                        color: drawbloodAppTheme.darkerText,
+                      ),
                     ),
                   ),
-                  subtitle: Text(
-                    list.venue.toString(),
-                    style: TextStyle(
-                      fontFamily: drawbloodAppTheme.fontName,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 14,
-                      letterSpacing: 0.18,
-                      color: drawbloodAppTheme.grey.withOpacity(0.6),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(bottom: 6.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 2.5),
+                          child: Row(
+                            children: [
+                              Text(
+                                '${list.name.toString()}',
+                                style: TextStyle(
+                                  fontFamily: drawbloodAppTheme.fontName,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14,
+                                  letterSpacing: 0.18,
+                                  color:
+                                      drawbloodAppTheme.grey.withOpacity(0.6),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 2.5),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 6.0),
+                                child: Text(
+                                  '${list.gender.toString()}',
+                                  style: TextStyle(
+                                    fontFamily: drawbloodAppTheme.fontName,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 14,
+                                    letterSpacing: 0.18,
+                                    color:
+                                        drawbloodAppTheme.grey.withOpacity(0.6),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                '${list.bloodtype.toString()}',
+                                style: TextStyle(
+                                  fontFamily: drawbloodAppTheme.fontName,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14,
+                                  letterSpacing: 0.18,
+                                  color:
+                                      drawbloodAppTheme.grey.withOpacity(0.6),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.5),
+                          child: Row(
+                            children: [
+                              Text(
+                                '${list.height.toString()}cm / ${list.weight.toString()}kg',
+                                style: TextStyle(
+                                  fontFamily: drawbloodAppTheme.fontName,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14,
+                                  letterSpacing: 0.18,
+                                  color:
+                                      drawbloodAppTheme.grey.withOpacity(0.6),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  trailing: Text(
-                    list.status.toString(),
-                    style: TextStyle(
-                      fontFamily: drawbloodAppTheme.fontName,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                      letterSpacing: 0.18,
-                      color: list.status == 'Ongoing'
-                          ? drawbloodAppTheme.darkText
-                          : list.status == 'Complete'
-                              ? drawbloodAppTheme.limegreen
-                              : drawbloodAppTheme.red,
-                    ),
+                  trailing: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        list.status.toString(),
+                        style: TextStyle(
+                          fontFamily: drawbloodAppTheme.fontName,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          letterSpacing: 0.18,
+                          color: list.status == 'Ongoing'
+                              ? drawbloodAppTheme.darkText
+                              : list.status == 'Complete'
+                                  ? drawbloodAppTheme.limegreen
+                                  : drawbloodAppTheme.red,
+                        ),
+                      ),
+                    ],
                   )),
             ],
           )),
@@ -302,9 +380,12 @@ void getUserAppointmentList(medicalInformation) async {
           venue: data['vanue'],
           status: data['status'],
           date: (data['date'] as Timestamp).toDate(),
-          createdate: data['createdate']));
-
-      print(userAppointmentList[0].user_id);
+          createdate: data['createdate'],
+          name: data['name'],
+          bloodtype: data['bloodtype'],
+          gender: data['gender'],
+          height: data['height'],
+          weight: data['weight']));
     }
   }
 }
@@ -321,40 +402,3 @@ void getMedicalName(uid) async {
     onError: (e) => print("Error getting document: $e"),
   );
 }
-
-void getUserInformation(user_id) async {
-  print(user_id);
-  final db = FirebaseFirestore.instance;
-  final docRef = db.collection("user").doc(user_id);
-  if (userInformationList.isNotEmpty) {
-    userInformationList.clear();
-  }
-  docRef.get().then(
-    (DocumentSnapshot doc) {
-      final data = doc.data() as Map<String, dynamic>;
-
-      userInformationList.add(UserModel(
-          name: data['name'],
-          bloodtype: data['bloodtype'],
-          gender: data['gender'],
-          height: data['height'],
-          weight: data['weight']));
-    },
-    onError: (e) => print("Error getting document: $e"),
-  );
-}
-
-
-
-// Future<UserModel?> getUserInformation(user_id) async {
-//   print(user_id);
-//   final userInfoCollection =
-//       FirebaseFirestore.instance.collection("user").doc(user_id);
-//   final snapshot = await userInfoCollection.get();
-//   if (snapshot.exists) {
-//     userInformationList.add(UserModel.fromJson(snapshot.data()!));
-//   }
-
-//   print('userInformationList[0].name');
-//   print(userInformationList.length);
-// }
