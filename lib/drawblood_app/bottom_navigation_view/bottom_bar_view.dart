@@ -1,7 +1,11 @@
 import 'dart:math' as math;
+import 'package:drawblood_medicalinstitution_app/drawblood_app/models/user_data.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/ui_view/appointment.dart';
+import 'package:drawblood_medicalinstitution_app/drawblood_app/user_info.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import '../../main.dart';
 import '../models/tabIcon_data.dart';
 import '../drawbood_app_theme.dart';
@@ -21,6 +25,7 @@ class BottomBarView extends StatefulWidget {
 class _BottomBarViewState extends State<BottomBarView>
     with TickerProviderStateMixin {
   AnimationController? animationController;
+  String qrCode = '';
 
   @override
   void initState() {
@@ -164,7 +169,7 @@ class _BottomBarViewState extends State<BottomBarView>
                           splashColor: Colors.white.withOpacity(0.1),
                           highlightColor: Colors.transparent,
                           focusColor: Colors.transparent,
-                          onTap: () => popout(context),
+                          onTap: () => scanQRCode(),
                           child: Icon(
                             Icons.calendar_month_outlined,
                             color: drawbloodAppTheme.white,
@@ -193,6 +198,36 @@ class _BottomBarViewState extends State<BottomBarView>
         }
       });
     });
+  }
+
+  Future<void> scanQRCode() async {
+    try {
+      final qrCode = await FlutterBarcodeScanner.scanBarcode(
+        '#ff6666',
+        'Cancel',
+        true,
+        ScanMode.QR,
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        this.qrCode = qrCode.isEmpty
+            ? ''
+            : qrCode == '-1'
+                ? ''
+                : qrCode;
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const user_info(),
+            settings: RouteSettings(arguments: qrCode)),
+      );
+    } on PlatformException {
+      qrCode = 'Failed to get platform version.';
+    }
   }
 }
 
