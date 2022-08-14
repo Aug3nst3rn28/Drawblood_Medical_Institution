@@ -1,20 +1,20 @@
-import 'package:drawblood_medicalinstitution_app/drawblood_app/ui_view/reward_list_view.dart';
-import 'package:drawblood_medicalinstitution_app/drawblood_app/ui_view/reward_title_view.dart';
-import 'package:drawblood_medicalinstitution_app/drawblood_app/ui_view/reward_view.dart';
+import 'package:drawblood_medicalinstitution_app/drawblood_app/ui_view/request_appiontment_list__view.dart';
 import 'package:flutter/material.dart';
 
 import '../drawbood_app_theme.dart';
 
-class RewardScreen extends StatefulWidget {
-  const RewardScreen({Key? key, this.animationController}) : super(key: key);
+class RequestAppointmentListScreen extends StatefulWidget {
+  const RequestAppointmentListScreen({Key? key, this.animationController})
+      : super(key: key);
 
   final AnimationController? animationController;
   @override
-  _RewardScreenState createState() => _RewardScreenState();
+  _RequestAppointmentListScreenState createState() =>
+      _RequestAppointmentListScreenState();
 }
 
-class _RewardScreenState extends State<RewardScreen>
-    with TickerProviderStateMixin {
+class _RequestAppointmentListScreenState
+    extends State<RequestAppointmentListScreen> with TickerProviderStateMixin {
   Animation<double>? topBarAnimation;
 
   List<Widget> listViews = <Widget>[];
@@ -58,28 +58,7 @@ class _RewardScreenState extends State<RewardScreen>
     const int count = 5;
 
     listViews.add(
-      RewardView(
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve:
-                Interval((1 / count) * 0, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
-    );
-
-    listViews.add(
-      RewardTitleView(
-        titleTxt: 'Vouchers and Rewards',
-        animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: widget.animationController!,
-            curve:
-                Interval((1 / count) * 0, 1.0, curve: Curves.fastOutSlowIn))),
-        animationController: widget.animationController!,
-      ),
-    );
-
-    listViews.add(
-      RewardListView(
+      RequestAppointmentListView(
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController!,
             curve:
@@ -183,7 +162,7 @@ class _RewardScreenState extends State<RewardScreen>
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Reward',
+                                  'Request List',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: drawbloodAppTheme.fontName,

@@ -1,6 +1,6 @@
 import 'package:drawblood_medicalinstitution_app/drawblood_app/Homepage/homepage_screen.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/Profile/profile_screen.dart';
-import 'package:drawblood_medicalinstitution_app/drawblood_app/Reward/reward_screen.dart';
+import 'package:drawblood_medicalinstitution_app/drawblood_app/Request/request_appointment_screen.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/appointment/Appointment_screen.dart';
 import 'package:flutter/material.dart';
 import 'bottom_navigation_view/bottom_bar_view.dart';
@@ -107,8 +107,8 @@ class _DrawBloodAppHomeScreenState extends State<DrawBloodAppHomeScreen>
                   return;
                 }
                 setState(() {
-                  tabBody =
-                      RewardScreen(animationController: animationController);
+                  tabBody = RequestAppointmentListScreen(
+                      animationController: animationController);
                 });
               });
             } else if (index == 3) {

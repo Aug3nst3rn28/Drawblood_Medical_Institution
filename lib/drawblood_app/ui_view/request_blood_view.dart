@@ -373,7 +373,8 @@ class _RequestBloodViewState extends State<RequestBloodView> {
                                                   bloodtype: bloodType,
                                                   status: "Ongoing",
                                                   venue: venue,
-                                                  date: date.toString(),
+                                                  date:
+                                                      '${date.year.toString()}-${date.month.toString()}-${date.day.toString()}',
                                                   time:
                                                       '${time.hourOfPeriod}:${time.minute} ${time.period.toString().split('.')[1]}'));
                                           Fluttertoast.showToast(

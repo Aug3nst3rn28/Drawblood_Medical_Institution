@@ -54,20 +54,6 @@ class _AppointmentScreenState extends State<AppointmentScreen>
     super.initState();
   }
 
-  // void addAllListData() {
-  //   const int count = 5;
-
-  //   listViews.add(
-  //     AppointmentView(
-  //       animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-  //           parent: widget.animationController!,
-  //           curve:
-  //               Interval((1 / count) * 2, 1.0, curve: Curves.fastOutSlowIn))),
-  //       animationController: widget.animationController!,
-  //     ),
-  //   );
-  // }
-
   Future<bool> getData() async {
     await Future<dynamic>.delayed(const Duration(milliseconds: 50));
     return true;

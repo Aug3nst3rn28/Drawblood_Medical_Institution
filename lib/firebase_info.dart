@@ -21,13 +21,6 @@ String? useremail() {
 }
 
 class FirestoreQuery {
-  static Stream<List<RewardModel>> readReward() {
-    final rewardCollection =
-        FirebaseFirestore.instance.collection("reward_list");
-    return rewardCollection.snapshots().map((querySnapshot) =>
-        querySnapshot.docs.map((e) => RewardModel.fromSnapshot(e)).toList());
-  }
-
   static Future<UserModel?> readUserInfo(uid) async {
     final medicalCollection =
         FirebaseFirestore.instance.collection("user").doc(uid);
@@ -89,5 +82,27 @@ class FirestoreQuery {
         .orderBy('date', descending: true);
     return appointmentCollection.snapshots().map((querySnapshot) =>
         querySnapshot.docs.map((e) => AppoinmentList.fromSnapshot(e)).toList());
+  }
+
+  static Future updateRequestStatus(uid, request_id, status) async {
+    dynamic documentID = '';
+    final data = await FirebaseFirestore.instance
+        .collection("request_appointment")
+        .where('uid', isEqualTo: uid)
+        .where('request_id', isEqualTo: request_id)
+        .get();
+
+    if (data.docs.isNotEmpty) {
+      documentID = data.docs[0].id;
+      final requestCollection =
+          FirebaseFirestore.instance.collection("request_appointment");
+      final docRef = requestCollection.doc(documentID);
+
+      try {
+        await docRef.update({"status": status});
+      } catch (e) {
+        print("Some error occured: $e");
+      }
+    }
   }
 }

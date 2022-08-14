@@ -1,4 +1,3 @@
-import 'package:drawblood_medicalinstitution_app/drawblood_app/Homepage/news_list_view.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/ui_view/request_blood_view.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/ui_view/bloodbank_level.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/ui_view/homepage_title_view.dart';

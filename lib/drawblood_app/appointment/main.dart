@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:drawblood_medicalinstitution_app/app_theme.dart';
+import 'package:drawblood_medicalinstitution_app/drawblood_app/appointment/login_screen.dart';
 import 'package:drawblood_medicalinstitution_app/drawblood_app/drawblood_app_home_screen.dart';
-import 'package:drawblood_medicalinstitution_app/drawblood_app/introduction/introduction_animation_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               return DrawBloodAppHomeScreen();
             } else {
-              return IntroductionAnimationScreen();
+              return LoginScreen();
             }
           },
         ));
