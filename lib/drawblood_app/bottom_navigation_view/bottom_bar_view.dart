@@ -171,7 +171,7 @@ class _BottomBarViewState extends State<BottomBarView>
                           focusColor: Colors.transparent,
                           onTap: () => scanQRCode(),
                           child: Icon(
-                            Icons.calendar_month_outlined,
+                            Icons.screenshot_monitor,
                             color: drawbloodAppTheme.white,
                             size: 32,
                           ),
