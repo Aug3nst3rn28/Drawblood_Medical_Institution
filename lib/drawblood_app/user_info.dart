@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:drawblood_medicalinstitution_app/drawblood_app/drawbood_app_theme.dart';
 
 final locate = FirebaseFirestore.instance.collection("appoinment");
 Color dangercolor = Colors.lightGreen;
@@ -86,8 +87,8 @@ class _user_infoState extends State<user_info> {
     Size size = MediaQuery.of(context).size;
     size2 = size;
     return Scaffold(
-      backgroundColor: Colors.blue,
-      appBar: AppBar(),
+      backgroundColor: drawbloodAppTheme.red,
+      appBar: AppBar(backgroundColor: drawbloodAppTheme.red),
       body: FutureBuilder<info?>(
           future: read(
             appoint_id.toString(),
@@ -120,7 +121,7 @@ class _user_infoState extends State<user_info> {
               if (user_info.status == "Ongoing") {
                 return buildbody(user_info!);
               } else {
-                dangercolor = Colors.red;
+                dangercolor = Colors.black;
                 return buildbody2(user_info!);
               }
             } else
@@ -134,7 +135,6 @@ class _user_infoState extends State<user_info> {
   Future<info?> read(name) async {
     final doc = FirebaseFirestore.instance.collection('appoinment').doc(name);
     final snapshot = await doc.get();
-    final snapshot2 = await doc.get();
 
     if (snapshot.exists) {
       return info.fromJson(snapshot.data()!);
@@ -303,7 +303,7 @@ class _user_infoState extends State<user_info> {
                                 child: Text("Complete"),
                                 style: TextButton.styleFrom(
                                   primary: Colors.white,
-                                  backgroundColor: Colors.blue,
+                                  backgroundColor: drawbloodAppTheme.red,
                                   onSurface: Colors.white,
                                   shape: const BeveledRectangleBorder(
                                       borderRadius:
